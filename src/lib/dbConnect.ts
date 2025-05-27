@@ -1,11 +1,43 @@
 import mongoose from "mongoose";
+const MONGODB_URI = process.env.MONGOURL;
 
-declare global {
-  var mongoose: any;
-}
-
-const MONGODB_URI = process.env.MONGODB_URI!;
+console.log("Connect state", mongoose.connection.readyState)
 
 if (!MONGODB_URI) {
-  throw new Error('Please define MONGODB_URI in .env.local')
+  throw new Error ("please define mongo enviroment variable")
 }
+
+async function connectToDatabase() {
+  if (mongoose.connection.readyState === 1) {
+    return mongoose;
+  }
+  const opts = {
+    bufferCommands: false,
+  }
+  await mongoose.connect(MONGODB_URI!, opts)
+  return mongoose;
+}
+
+export default connectToDatabase;
+
+
+
+
+
+// import mongoose from "mongoose";
+
+// const connectionToDatabae = async (): Promise<void> => {
+//   try {
+//     const mongoUrl = process.env.MONGOURL;
+    
+//     if (!mongoUrl) {
+//       throw new Error("MONGOURL is not defined in enviroment variables");
+//     }
+
+//     await mongoose.connect(mongoUrl)
+//     console.log("Connected to MongoDB")
+//   } catch (err) {
+//     console.error("Error", err)
+//   }
+// }
+// export default connectionToDatabae;
