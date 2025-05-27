@@ -26,8 +26,14 @@ const SignUp = () => {
     confirmPassword: "",
   })
 
+  const [errors, setErrors] = useState({name: ""})
   const [pending, setPending] = useState(false);
   const handleSubmit = async (e: React.FormEvent) => {
+
+    if (!form.name.trim()) {
+      setErrors({ ...errors, name: 'Please input your full name to create an account' });
+      return;
+    }
     e.preventDefault();
     setPending(true);
 
@@ -35,7 +41,13 @@ const SignUp = () => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(form)
-    })
+    });
+    const data = await res.json();
+
+    if (!res.ok) {
+      setPending(false);
+      
+    }
   }
   return (
     <>
@@ -57,8 +69,14 @@ const SignUp = () => {
                 disabled={pending}
                 placeholder="Full name"
                 value={form.name}
-                onChange={(e) => setForm({ ...form, name: e.target.value })}
+                onChange={(e) => {
+                  setForm({ ...form, name: e.target.value })
+                  if (errors.name) {
+                    setErrors({...errors, name: ""})
+                  }
+                }}
                 required
+                // className={errors.name ? 'error-border' : ''}
               />
 
               <Input
