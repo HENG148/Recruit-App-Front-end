@@ -1,0 +1,31 @@
+{
+  "Header": {
+    "home": "Home",
+    "job": "Job",
+    "media": "Media",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "HomePage": {
+    "title": "Hello World!",
+    "about": "Go to the about page",
+    "news-slider": "Slider",
+    "find-a-job": "Find a Job"
+  },
+  "category": {
+    "industry": "Industry Unlimited"
+  },
+  "Navigation": {
+    "title": "fsdfsdd",
+    "home": "home"
+  },
+  "LocaleSwitcher": {
+    "slider": "sdfsd",
+    "label": "label",
+    "locale": "{locale, select, Kh {🇰🇭 Khmer} en {🇬🇧 English} other {unknown}}"
+  },
+  "Log": {
+    "register": "Register",
+    "log-in": "Log in"
+  }
+}

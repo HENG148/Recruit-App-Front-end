@@ -1,7 +1,9 @@
 import mongoose from "mongoose";
-const MONGODB_URI = process.env.MONGOURL;
+import dotenv from "dotenv"
 
-console.log("Connect state", mongoose.connection.readyState)
+dotenv.config()
+
+const MONGODB_URI = process.env.MONGOURL;
 
 if (!MONGODB_URI) {
   throw new Error ("please define mongo enviroment variable")
@@ -19,9 +21,6 @@ async function connectToDatabase() {
 }
 
 export default connectToDatabase;
-
-
-
 
 
 // import mongoose from "mongoose";
