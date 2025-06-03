@@ -1,22 +1,28 @@
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
 import logo from '../../public/10.png';
 import Image from 'next/image';
 import Nav from './Nav';
 import LocalSwitcher from './localeSwitch/local-switcher';
 import { useTranslations } from 'next-intl';
+import { FaBars, FaTimes } from 'react-icons/fa';
 
 interface HeaderProps {
   title: string;
-  className: string;
+  // className: string;
 }
 
 const Navbar: React.FC<HeaderProps> = () => {
   const t = useTranslations("Log");
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  }
   
   return (
-    <header className="fixed w-full top-0 left-0 right-0 bg-white border border-[#cde6ff] mx-10 backdrop-blur-sm z-50 py-3 px-4 sm:px-6">
-      <div className="max-w-7xl mx-auto flex justify-between items-center">
+    <header className="fixed w-full top-2 left-0 right-0 bg-white border border-[#cde6ff] backdrop-blur-sm z-50 py-3 px-4 sm:px-6">
+      <div className="max-w-7xl mx-auto flex justify-between items-center"> {/*   */}
         {/* Logo and Navigation */}
         <div className="flex items-center gap-4 md:gap-8">
           <Link href="/" className="flex-shrink-0">
@@ -30,11 +36,21 @@ const Navbar: React.FC<HeaderProps> = () => {
           <div className="hidden xl:flex">
             <Nav />
           </div>
+
+          {/* Mobile menu button */}
+          <div className='xl:hidden flex items-center'>
+            <button
+              onClick={toggleMenu}
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-blue-600 hover:bg-gray-100 focus:outline-none"
+            >
+              {isMenuOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
+            </button>
+          </div>
         </div>
-        <div className="items-center gap-4 sm:gap-6 hidden xl:flex">
+        <div className="items-center gap-4 mr-10 sm:gap-6 hidden xl:flex">
           <div className="flex items-center gap-2 pr-4 sm:gap-3">
             <Link 
-              href="/" 
+              href="/register" 
               className="border border-[#1a5276] px-6 py-[10px] rounded-[30px] text-sm sm:text-[15px] hover:bg-[#edf2f4] transition-colors whitespace-nowrap"
             >
               {t("register")}

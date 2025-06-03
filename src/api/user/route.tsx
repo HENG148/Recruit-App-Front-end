@@ -1,30 +1,48 @@
-import mongoose, { Document, Model, Schema } from "mongoose";
+import connectionToDatabae from "@/lib/dbConnect";
+import User from "@/models/user";
+import { NextResponse } from "next/server";
 
-interface IUser extends Document {
-  name: string;
-  email: string;
-  password?: string;
-  id: string;
+export async function PORT(request: Request) {
+  try {
+    await connectionToDatabae();
+    const { name, email } = await request.json();
+    const newUser = new User({ name, email })
+    await newUser.save();
+    return NextResponse.json(newUser, {status: 201})
+  } catch(err) {
+    console.log(err)
+  }
 }
 
-const UserSchema: Schema<IUser> = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  password: {
-    type: String,
-    required: false,
-  }
-})
 
-const User: Model<IUser> = mongoose.models.User || mongoose.model<IUser>("User", UserSchema);
-export default User;
+
+// import mongoose, { Document, Model, Schema } from "mongoose";
+
+// interface IUser extends Document {
+//   name: string;
+//   email: string;
+//   password?: string;
+//   id: string;
+// }
+
+// const UserSchema: Schema<IUser> = new mongoose.Schema({
+//   name: {
+//     type: String,
+//     required: true,
+//   },
+//   email: {
+//     type: String,
+//     required: true,
+//     unique: true,
+//   },
+//   password: {
+//     type: String,
+//     required: false,
+//   }
+// })
+
+// const User: Model<IUser> = mongoose.models.User || mongoose.model<IUser>("User", UserSchema);
+// export default User;
 
 // import connectionToDatabae from "@/lib/dbConnect"
 // import { NextRequest, NextResponse } from "next/server";

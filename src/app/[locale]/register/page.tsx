@@ -18,7 +18,7 @@ import { FaGithub, FaGoogle } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 
 
-const SignUp = () => {
+const Register = () => {
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -55,7 +55,7 @@ const SignUp = () => {
         <Card className="md:h-auto w-[80%] sm:w-[420] p-4 sm:p-8">
           <CardHeader>
             <CardTitle className="text-center">
-              Sign Up
+              Register
             </CardTitle>
             <CardDescription>
               Use email or service, to create account
@@ -138,17 +138,22 @@ const SignUp = () => {
             <p className="text-center text-sm mt-2 text-muted-foreground">
               Already have an account?
               <Link
-                href="sign-in"
+                href="/login"
                 className="text-sky-700 ml-4 hover:underline cursor-pointer"
               >
-                Sign in
+                Login
               </Link>
             </p>
           </CardContent>
+          <div>
+            <Link href="/" className="text-blue-700 underline">
+              Back Home
+            </Link>
+          </div>
         </Card>
       </div>
     </>
   )
 }
 
-export default SignUp;
+export default Register;

@@ -4,7 +4,8 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { routing } from "@/i18n/routing";
-import { notFound } from "next/navigation";
+import { notFound, usePathname } from "next/navigation";
+import { LayoutProvider } from "./LayoutProvider";
 
 const geistSans = Merriweather_Sans({
   variable: "--font-merriweather_sans",
@@ -37,8 +38,9 @@ export default async function RootLayout({
         className={`${geistSans.variable} antialiased`}
       >
         <NextIntlClientProvider>
-          <Navbar className="" title=""/>
-          {children}
+          <LayoutProvider>
+            {children}
+          </LayoutProvider>
         </NextIntlClientProvider>
       </body>
     </html>

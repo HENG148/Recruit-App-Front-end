@@ -26,35 +26,50 @@ const InfoSlider: React.FC<SliderProps> = ({
   showNavigation = true,
 }) => {
   return (
-    <div className="">
+    <div className="w-full mx-auto">
       <div>
         <Swiper
-          modules={[...(showNavigation ? [Pagination] : []), ...(showNavigation ? [Navigation] : []), Autoplay]}
+          // modules={[...(showNavigation ? [Pagination] : []), ...(showNavigation ? [Navigation] : []), Autoplay]}
+          // slidesPerView={1}
+          // scrollbar={{ draggable: true }}
+          // pagination={
+          //   showPagination
+          //     ? { clickable: true, dynamicBullets: true, type: 'bullets' }
+          //     : false
+          // }
+          // navigation={showNavigation}
+          // autoplay={{
+          //   delay: autoplayDelay,
+          //   disableOnInteraction: false,
+          // }}
+
+          modules={[Autoplay, Pagination, Navigation]}
           slidesPerView={1}
           scrollbar={{ draggable: true }}
-          pagination={
-            showPagination
-              ? { clickable: true, dynamicBullets: true, type: 'bullets' }
-              : false
-          }
-          navigation={showNavigation}
+          pagination={{
+            clickable: true,
+            dynamicBullets: true,
+            type: 'bullets',
+            el: ".swiper-pagination"
+          }}
           autoplay={{
-            delay: autoplayDelay,
+            delay: 7000,
             disableOnInteraction: false,
           }}
         >
           {InfoSlide.map((slide, idx) => (
-            <SwiperSlide key={idx} className="px-[19rem]">
-              <Image
-                src={slide.image}
-                alt={slide.alt}
-                width={1000}
-                height={0}
-                className=""
-              />
+            <SwiperSlide key={idx} className="">
+              <div className="flex justify-center">
+                <Image
+                  src={slide.image}
+                  alt={slide.alt}
+                  width={1150}
+                  height={0}
+                />
+              </div>
             </SwiperSlide>
           ))}
-
+          <div className="swiper-pagination !ralative mt-4"></div>
         </Swiper>
       </div>
     </div>
