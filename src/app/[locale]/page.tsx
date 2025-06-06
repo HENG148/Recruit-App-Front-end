@@ -5,7 +5,9 @@ import Link from "next/link";
 import CoverLetter from "./coverLetter/page";
 import sliderMe from '../../../public/slider.png'
 import Collaborative from "@/components/Collaborative";
-import ClientExpert from "@/components/ExpertListing";
+import SearchBar from "@/components/jobs/Searchbar";
+import { setDefaultAutoSelectFamily } from "net";
+import PageJob from "@/components/jobs/page";
 
 interface LinkButtonProps {
   href: string;
@@ -46,7 +48,8 @@ const Home = ({ }: HomeProps) => {
 
           <div>
             <div>
-              <ClientExpert />
+              {/* <JobsPage /> */}
+              <PageJob />
             </div>
           </div>
         </div>
