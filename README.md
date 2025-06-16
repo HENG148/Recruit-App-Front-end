@@ -1,6 +1,6 @@
 🌍 Recruit App – Hire from Anywhere
 
-  AstroHR App is a modern, user-friendly platform designed to help businesses find and recruit employees from anywhere in the world. Whether you're a company looking for new team members or an individual seeking job opportunities, this app       connects the right people together — fast and efficiently.
+  AstroHR App is a modern, user-friendly platform designed to help businesses find and recruit employees from anywhere in the world. Whether you're a company looking for new team members or an individual seeking job opportunities, this app          connects the right people together — fast and efficiently.
 
 🚀 Features
 
